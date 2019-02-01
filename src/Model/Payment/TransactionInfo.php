@@ -43,6 +43,12 @@ class TransactionInfo
     protected $message;
 
     /**
+     * @var string
+     * @Serializer\Type("string")
+     */
+    protected $text;
+
+    /**
      * Gets amount value.
      *
      * @return int
@@ -155,5 +161,23 @@ class TransactionInfo
     {
         $this->transactionId = $transactionId;
         return $this;
+    }
+
+    /**
+     * @param string $text
+     * @return TransactionInfo
+     */
+    public function setText(string $text): TransactionInfo
+    {
+        $this->text = $text;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getText(): string
+    {
+        return $this->text;
     }
 }

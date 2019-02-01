@@ -36,6 +36,8 @@ class Payment extends ApiBase implements PaymentInterface
      */
     protected $customPath;
 
+    protected $merchant;
+
     /**
      * Gets merchantSerialNumber value.
      *
@@ -66,16 +68,19 @@ class Payment extends ApiBase implements PaymentInterface
      * @param string $subscription_key
      * @param $merchant_serial_number
      * @param $custom_path
+     * @param $merchant
      */
     public function __construct(
         VippsInterface $app,
         $subscription_key,
         $merchant_serial_number,
-        $custom_path = 'Ecomm'
+        $custom_path = 'Ecomm',
+        $merchant = null
     ) {
         parent::__construct($app, $subscription_key);
         $this->merchantSerialNumber = $merchant_serial_number;
         $this->customPath = $custom_path;
+        $this->merchant = $merchant;
     }
 
     /**
@@ -177,7 +182,7 @@ class Payment extends ApiBase implements PaymentInterface
             )
             ->setMerchantInfo(
                 (new MerchantInfo())
-                    ->setCallBack($callback)
+                    ->setCallbackPrefix($callback)
                     ->setMerchantSerialNumber($this->getMerchantSerialNumber())
             )
             ->setTransaction(
@@ -187,6 +192,11 @@ class Payment extends ApiBase implements PaymentInterface
                     ->setOrderId($order_id)
                     ->setRefOrderId($refOrderID)
             );
+
+        if($this->merchant != null){
+            $request->setMerchantInfo($this->merchant);
+        }
+
         // Pass request object along with all data required by InitiatePayment
         // to make a call.
         $resource = new InitiatePayment($this->app, $this->getSubscriptionKey(), $request);

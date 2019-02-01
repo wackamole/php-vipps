@@ -22,7 +22,11 @@ class MerchantInfo
      * @var string
      * @Serializer\Type("string")
      */
-    protected $callBack;
+    protected $callbackPrefix;
+
+    protected $fallBack;
+    protected $consentRemovalPrefix;
+    protected $shippingDetailsPrefix;
 
     /**
      * Gets merchantSerialNumber value.
@@ -52,21 +56,77 @@ class MerchantInfo
      *
      * @return string
      */
-    public function getCallBack()
+    public function getCallbackPrefix()
     {
-        return $this->callBack;
+        return $this->callbackPrefix;
     }
 
     /**
      * Sets callBack variable.
      *
-     * @param string $callBack
+     * @param string $callbackPrefix
      *
      * @return $this
      */
-    public function setCallBack($callBack)
+    public function setCallbackPrefix($callbackPrefix)
     {
-        $this->callBack = $callBack;
+        $this->callbackPrefix = $callbackPrefix;
         return $this;
     }
+
+    /**
+     * @param mixed $fallBack
+     * @return MerchantInfo
+     */
+    public function setFallBack($fallBack)
+    {
+        $this->fallBack = $fallBack;
+        return $this;
+    }
+
+    /**
+     * @param mixed $consentRemovalPrefix
+     * @return MerchantInfo
+     */
+    public function setConsentRemovalPrefix($consentRemovalPrefix)
+    {
+        $this->consentRemovalPrefix = $consentRemovalPrefix;
+        return $this;
+    }
+
+    /**
+     * @param mixed $shippingDetailsPrefix
+     * @return MerchantInfo
+     */
+    public function setShippingDetailsPrefix($shippingDetailsPrefix)
+    {
+        $this->shippingDetailsPrefix = $shippingDetailsPrefix;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFallBack()
+    {
+        return $this->fallBack;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConsentRemovalPrefix()
+    {
+        return $this->consentRemovalPrefix;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getShippingDetailsPrefix()
+    {
+        return $this->shippingDetailsPrefix;
+    }
+
+
 }

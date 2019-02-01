@@ -25,6 +25,12 @@ class ResponseInitiatePayment
     protected $merchantSerialNumber;
 
     /**
+     * @var string
+     * @Serializer\Type("string")
+     */
+    protected $url;
+
+    /**
      * @var \zaporylie\Vipps\Model\Payment\TransactionInfo
      * @Serializer\Type("zaporylie\Vipps\Model\Payment\TransactionInfo")
      */
@@ -58,5 +64,13 @@ class ResponseInitiatePayment
     public function getTransactionInfo()
     {
         return $this->transactionInfo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
     }
 }

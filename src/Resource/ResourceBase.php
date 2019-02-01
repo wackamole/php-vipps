@@ -165,6 +165,7 @@ abstract class ResourceBase implements ResourceInterface, SerializableInterface
     {
         try {
             $request = $this->getRequest();
+//            error_log($request->getUri()->getPath());
             $response = $this->handleRequest($request);
         } catch (HttpException $e) {
             // Catch exceptions thrown by http client.

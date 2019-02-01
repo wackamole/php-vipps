@@ -1,6 +1,6 @@
 {
     "name": "zaporylie/vipps",
-    "description": "Vipps by DNB PHP SDK",
+    "description": "Vipps PHP SDK",
     "type": "library",
     "keywords": ["payment"],
     "require": {
